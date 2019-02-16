@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Numbers.Sorting.Tests
 {
@@ -54,49 +55,49 @@ namespace Numbers.Sorting.Tests
 
 
 
-        //[TestCase(new string[] { "2", "1", "200", "6", "44", "7", "6", "5" }, new int[] { 1, 2, 5, 6, 6, 7, 44, 200 })]
-        //[TestCase(new string[] { "2", "1", "200", "A", "6", "44", "7", "6", "5" }, new int[] { 1, 2, 5, 6, 6, 7, 44, 200 })]
-        //public void OnShort_WhenGiveMultipleInputAsTestCases_ShouldReturneOrderdNumberOnly(string[] input, int[] expected)
-        //{
-        //    string fileName = "inputNumbers.csv";
-        //    List<string> numbers = input.ToList();
+        [TestCase(new string[] { "2", "1", "200", "6", "44", "7", "6", "5" }, new int[] { 1, 2, 5, 6, 6, 7, 44, 200 })]
+        [TestCase(new string[] { "2", "1", "200", "A", "6", "44", "7", "6", "5" }, new int[] { 1, 2, 5, 6, 6, 7, 44, 200 })]
+        public void OnShort_WhenGiveMultipleInputAsTestCases_ShouldReturneOrderdNumberOnly(string[] input, int[] expected)
+        {
+            string fileName = "inputNumbers.csv";
+            List<string> numbers = input.ToList();
 
-        //    _mockFileManager.Setup(x => x.ReadCsvFile(fileName)).Returns(numbers);
+            _mockFileManager.Setup(x => x.ReadCsvFile(fileName)).Returns(numbers);
 
-        //    var response = _sut.Sort(fileName);
-
-
-        //    Assert.AreEqual(8, response.Count);
-        //    Assert.AreEqual(expected, response);
-        //}
-
-        //[TestCaseSource(typeof(TestClassData), "SomeTestCases")]
-        //public void OnShort_WhenGiveMultipleInputInTestDataMethod_ShouldReturneOrderdNumberOnly(string[] input, int[] expected)
-        //{
-
-        //    string fileName = "inputNumbers.csv";
-        //    List<string> numbers = input.ToList();
-
-        //    _mockFileManager.Setup(x => x.ReadCsvFile(fileName)).Returns(numbers);
-
-        //    var response = _sut.Sort(fileName);
+            var response = _sut.Sort(fileName);
 
 
-        //    Assert.AreEqual(8, response.Count);
-        //    Assert.AreEqual(expected, response);
-        //}
+            Assert.AreEqual(8, response.Count);
+            Assert.AreEqual(expected, response);
+        }
 
-        //public class TestClassData
-        //{
-        //    public static IEnumerable<TestCaseData> SomeTestCases
-        //    {
-        //        get
-        //        {
-        //            yield return new TestCaseData(new string[] { "2", "1", "200", "6", "44", "7", "6", "5" }, new int[] { 1, 2, 5, 6, 6, 7, 44, 200 });
-        //            yield return new TestCaseData(new string[] { "2", "1", "200", "A", "6", "44", "7", "6", "5" }, new int[] { 1, 2, 5, 6, 6, 7, 44, 200 });
-        //        }
-        //    }
-        //}
+        [TestCaseSource(typeof(TestClassData), "SomeTestCases")]
+        public void OnShort_WhenGiveMultipleInputInTestDataMethod_ShouldReturneOrderdNumberOnly(string[] input, int[] expected)
+        {
+
+            string fileName = "inputNumbers.csv";
+            List<string> numbers = input.ToList();
+
+            _mockFileManager.Setup(x => x.ReadCsvFile(fileName)).Returns(numbers);
+
+            var response = _sut.Sort(fileName);
+
+
+            Assert.AreEqual(8, response.Count);
+            Assert.AreEqual(expected, response);
+        }
+
+        public class TestClassData
+        {
+            public static IEnumerable<TestCaseData> SomeTestCases
+            {
+                get
+                {
+                    yield return new TestCaseData(new string[] { "2", "1", "200", "6", "44", "7", "6", "5" }, new int[] { 1, 2, 5, 6, 6, 7, 44, 200 });
+                    yield return new TestCaseData(new string[] { "2", "1", "200", "A", "6", "44", "7", "6", "5" }, new int[] { 1, 2, 5, 6, 6, 7, 44, 200 });
+                }
+            }
+        }
 
     }
 }
